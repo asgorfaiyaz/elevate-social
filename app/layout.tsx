@@ -15,8 +15,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elevate Social",
-  description: "Elevate Social",
+  title: "Social Event",
+  description: "Social Event Management",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
