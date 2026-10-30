@@ -7,3 +7,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## follow ui best preactices
+
+don't use arbitary colors, go for semantic colors.
+colors should be consistent accross the ui, don't use too many colors or specially gradients.
+
+use jetbrains mono for headings and subheading and for the rest use albert sans
+
+use shadcn ui components
