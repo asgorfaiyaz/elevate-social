@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const navLinks = [{ label: "Upcoming Events", href: "/events" }];
+import { AuthButton } from "./auth-button";
+import { navLinks } from "./nav-links";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -32,24 +34,30 @@ export function MobileMenu() {
             "flex flex-col gap-1 px-4 py-4 md:hidden",
           )}
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname === link.href || pathname.startsWith(`${link.href}/`);
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "rounded-md px-3 py-2 text-sm transition-colors",
+                  isActive
+                    ? "bg-primary/10 text-primary font-medium"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <div className="mt-2 border-t border-border/40 pt-3">
-            <Link
-              href="/sign-in"
-              onClick={() => setOpen(false)}
-              className={cn(buttonVariants(), "w-full")}
-            >
-              Login
-            </Link>
+            <AuthButton className="w-full" />
           </div>
         </div>
       )}

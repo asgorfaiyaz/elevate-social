@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Albert_Sans, JetBrains_Mono } from "next/font/google";
+import { Google_Sans, Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
+import { Toaster } from "@/components/ui/sonner";
 
-const albertSans = Albert_Sans({
-  variable: "--font-albert-sans",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
 });
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const googleSans = Google_Sans({
+  variable: "--font-google-sans",
   subsets: ["latin"],
 });
 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${albertSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${googleSans.variable} ${lora.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
@@ -35,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           <Navbar />
           {children}
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>

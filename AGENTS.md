@@ -13,6 +13,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 don't use arbitary colors, go for semantic colors.
 colors should be consistent accross the ui, don't use too many colors or specially gradients.
 
-use jetbrains mono for headings and subheading and for the rest use albert sans
-
 use shadcn ui components
