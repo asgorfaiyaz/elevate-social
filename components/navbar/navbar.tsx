@@ -6,7 +6,7 @@ import { NavLinks } from "./nav-links";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 dark:bg-slate-950 backdrop-blur-md">
       <nav className="relative container mx-auto flex h-16 items-center justify-between px-4">
         <NavLogo />
         <NavLinks />

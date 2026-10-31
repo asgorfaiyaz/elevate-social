@@ -16,9 +16,7 @@ export function NavLinks() {
     <ul className="hidden md:flex items-center gap-6 text-sm">
       {navLinks.map((link) => {
         const isActive =
-          link.href === "/"
-            ? pathname === "/"
-            : pathname === link.href || pathname.startsWith(`${link.href}/`);
+          pathname === link.href || pathname.startsWith(`${link.href}/`);
 
         return (
           <li key={link.href}>
@@ -27,7 +25,7 @@ export function NavLinks() {
               className={cn(
                 "transition-colors",
                 isActive
-                  ? "text-gray-800 dark:text-primary-foreground font-medium"
+                  ? "text-primary dark:text-primary-foreground font-medium"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
