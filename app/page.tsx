@@ -1,5 +1,9 @@
-function Home() {
-  return <h1>hello</h1>;
-}
+import { Banner } from "@/components/home/banner";
 
-export default Home;
+export default function HomePage() {
+  return (
+    <main className="flex-1">
+      <Banner />
+    </main>
+  );
+}
