@@ -47,7 +47,6 @@ export function SignInForm() {
     const { error } = await authClient.signIn.email({
       email: values.email,
       password: values.password,
-      callbackURL: "/",
     });
 
     if (error) {
@@ -59,7 +58,7 @@ export function SignInForm() {
       toast.success("Welcome back!", {
         description: "You've been signed in successfully.",
       });
-      router.push("/");
+      router.replace("/");
     }
   }
 
@@ -73,6 +72,12 @@ export function SignInForm() {
       toast.error("Google sign-in failed", {
         description: error.message ?? "Please try again.",
       });
+      return;
+    } else {
+      toast.success("Welcome back!", {
+        description: "You've been signed in successfully.",
+      });
+      router.replace("/");
     }
     setGoogleLoading(false);
   }

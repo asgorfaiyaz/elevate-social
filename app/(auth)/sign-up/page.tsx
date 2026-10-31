@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SignUpForm } from "@/components/auth/sign-up-form";
 
 export const metadata: Metadata = {
-  title: "Sign Up — Elevate Social",
-  description: "Create your Elevate Social account.",
+  title: "Sign Up — Social Event",
+  description: "Create your Social Event account.",
 };
 
 export default function SignUpPage() {

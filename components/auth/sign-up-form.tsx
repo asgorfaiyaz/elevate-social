@@ -50,7 +50,7 @@ export function SignUpForm() {
       email: values.email,
       password: values.password,
       image: values.photoURL || undefined,
-      callbackURL: "/",
+      callbackURL: "/sign-in",
     });
 
     if (error) {
@@ -59,9 +59,9 @@ export function SignUpForm() {
       });
     } else {
       toast.success("Account created!", {
-        description: "Welcome to Elevate Social. You're now signed in.",
+        description: "Welcome to Social Event. Sign in please.",
       });
-      router.push("/");
+      router.push("/sign-in");
     }
   }
 

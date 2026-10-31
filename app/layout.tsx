@@ -35,7 +35,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           <Navbar />
           {children}
-          <Toaster richColors position="top-right" />
+          <Toaster
+            position="top-right"
+            theme="system"
+            richColors
+            closeButton
+            toastOptions={{
+              className: "font-sans",
+              duration: 4000,
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
