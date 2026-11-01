@@ -59,7 +59,7 @@ export function SignUpForm() {
       });
     } else {
       toast.success("Account created!", {
-        description: "Welcome to Social Event. Sign in please.",
+        description: "Welcome to Elevate Social. Sign in to continue.",
       });
       router.push("/sign-in");
     }
@@ -80,20 +80,22 @@ export function SignUpForm() {
   }
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Create an account</CardTitle>
-        <CardDescription>
-          Join Socail Event and start connecting today.
+    <Card className="w-full border-border/70 shadow-lg shadow-foreground/5">
+      <CardHeader className="px-6 pt-7 sm:px-8 sm:pt-8">
+        <CardTitle className="font-heading text-3xl font-bold tracking-tight">
+          Create your account
+        </CardTitle>
+        <CardDescription className="text-sm leading-6">
+          Join Elevate Social to find, join, and organize local service events.
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-5">
+      <CardContent className="space-y-5 px-6 sm:px-8">
         {/* Google */}
         <Button
           type="button"
           variant="outline"
-          className="w-full"
+          className="h-11 w-full"
           onClick={handleGoogle}
           disabled={googleLoading || isSubmitting}
         >
@@ -108,8 +110,8 @@ export function SignUpForm() {
         {/* Divider */}
         <div className="flex items-center gap-3">
           <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">
-            or register with email
+          <span className="text-xs font-medium text-muted-foreground">
+            Or sign up with email
           </span>
           <Separator className="flex-1" />
         </div>
@@ -125,6 +127,7 @@ export function SignUpForm() {
                 type="text"
                 placeholder="Jane Doe"
                 autoComplete="name"
+                className="h-11"
                 {...register("name")}
               />
               <FieldError errors={[errors.name]} />
@@ -138,6 +141,7 @@ export function SignUpForm() {
                 type="email"
                 placeholder="you@example.com"
                 autoComplete="email"
+                className="h-11"
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? "reg-email-error" : undefined}
                 {...register("email")}
@@ -158,6 +162,7 @@ export function SignUpForm() {
                 type="url"
                 placeholder="https://example.com/avatar.png"
                 autoComplete="photo"
+                className="h-11"
                 {...register("photoURL")}
               />
               <FieldDescription id="photoURL-hint">
@@ -173,6 +178,7 @@ export function SignUpForm() {
                 id="reg-password"
                 placeholder="••••••••"
                 autoComplete="new-password"
+                className="h-11"
                 {...register("password")}
               />
               <FieldDescription id="reg-password-hint">
@@ -190,6 +196,7 @@ export function SignUpForm() {
                 id="confirmPassword"
                 placeholder="••••••••"
                 autoComplete="new-password"
+                className="h-11"
                 {...register("confirmPassword")}
               />
               <FieldError errors={[errors.confirmPassword]} />
@@ -198,7 +205,7 @@ export function SignUpForm() {
 
           <Button
             type="submit"
-            className="mt-5 w-full"
+            className="mt-5 h-11 w-full"
             disabled={isSubmitting || googleLoading}
           >
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
@@ -207,7 +214,7 @@ export function SignUpForm() {
         </form>
       </CardContent>
 
-      <CardFooter className="justify-center">
+      <CardFooter className="justify-center px-6 pb-7 sm:px-8 sm:pb-8">
         <p className="text-sm text-muted-foreground">
           Already have an account?{" "}
           <Link

@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
 import {
   Field,
+  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -83,19 +84,21 @@ export function SignInForm() {
   }
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle className="font-heading">Welcome back</CardTitle>
-        <CardDescription>
+    <Card className="w-full border-border/70 shadow-lg shadow-foreground/5">
+      <CardHeader className="px-6 pt-7 sm:px-8 sm:pt-8">
+        <CardTitle className="font-heading text-3xl font-bold tracking-tight">
+          Welcome back
+        </CardTitle>
+        <CardDescription className="text-sm leading-6">
           Sign in to your Elevate Social account.
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-5">
+      <CardContent className="space-y-5 px-6 sm:px-8">
         <Button
           type="button"
           variant="outline"
-          className="w-full"
+          className="h-11 w-full"
           onClick={handleGoogle}
           disabled={googleLoading || isSubmitting}
         >
@@ -109,15 +112,14 @@ export function SignInForm() {
 
         <div className="flex items-center gap-3">
           <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">
-            or continue with email
+          <span className="text-xs font-medium text-muted-foreground">
+            Or continue with email
           </span>
           <Separator className="flex-1" />
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <FieldGroup>
-            {/* ata-invalid	Primarily used for styling and CSS selectors. */}
             <Field data-invalid={!!errors.email}>
               <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input
@@ -125,6 +127,7 @@ export function SignInForm() {
                 type="email"
                 placeholder="you@example.com"
                 autoComplete="email"
+                className="h-11"
                 {...register("email")}
               />
               <FieldError errors={[errors.email]} />
@@ -136,15 +139,20 @@ export function SignInForm() {
                 id="password"
                 placeholder="••••••••"
                 autoComplete="current-password"
+                className="h-11"
                 {...register("password")}
               />
+              <FieldDescription>
+                Use at least 6 characters, including uppercase and lowercase
+                letters.
+              </FieldDescription>
               <FieldError errors={[errors.password]} />
             </Field>
           </FieldGroup>
 
           <Button
             type="submit"
-            className="mt-5 w-full"
+            className="mt-5 h-11 w-full"
             disabled={isSubmitting || googleLoading}
           >
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
@@ -153,7 +161,7 @@ export function SignInForm() {
         </form>
       </CardContent>
 
-      <CardFooter className="justify-center">
+      <CardFooter className="justify-center px-6 pb-7 sm:px-8 sm:pb-8">
         <p className="text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
           <Link
