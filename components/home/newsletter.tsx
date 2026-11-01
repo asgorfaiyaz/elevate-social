@@ -1,42 +1,55 @@
-import { Mail, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { ArrowRight, HeartHandshake, MapPin } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export function Newsletter() {
   return (
-    <section className="py-20 md:py-10">
+    <section className="py-16 md:py-20">
       <div className="container mx-auto px-4">
-        <Card className="border-border/50 bg-linear-to-br from-primary/5 to-background">
-          <CardContent className="p-8 md:p-12">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="flex justify-center mb-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
+        <Card className="overflow-hidden border-border/70 bg-primary text-primary-foreground shadow-sm">
+          <CardContent className="grid gap-8 p-7 sm:p-10 md:grid-cols-[1fr_auto] md:items-center md:p-12">
+            <div className="max-w-2xl">
+              <div className="mb-5 flex size-11 items-center justify-center rounded-xl bg-primary-foreground/10">
+                <HeartHandshake aria-hidden="true" className="size-5" />
               </div>
-              <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Stay Connected
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary-foreground/75">
+                Your neighborhood needs you
+              </p>
+              <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+                Make your next plan count.
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Subscribe to our newsletter for updates on upcoming social
-                events, community drives, and volunteer opportunities.
+              <p className="mt-4 max-w-xl text-base leading-7 text-primary-foreground/80">
+                Find a local cause to join or bring your own community drive to
+                life. Good things start when neighbors show up.
               </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1"
-                  disabled
-                />
-                <Button type="button" className="gap-2" disabled>
-                  Subscribe
-                  <Send className="h-4 w-4" />
-                </Button>
-              </form>
-              <p className="text-xs text-muted-foreground mt-4">
-                We respect your privacy. Unsubscribe anytime.
+              <p className="mt-4 flex items-center gap-2 text-sm text-primary-foreground/75">
+                <MapPin aria-hidden="true" className="size-4" />
+                Explore opportunities around Dhaka
               </p>
+            </div>
+
+            <div className="flex flex-col items-start gap-3 md:items-end">
+              <Link
+                href="/upcoming-events"
+                className={cn(
+                  buttonVariants({ variant: "secondary", size: "lg" }),
+                  "gap-2",
+                )}
+              >
+                Explore local events
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </Link>
+              <Link
+                href="/sign-up"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground",
+                )}
+              >
+                Start a community drive
+              </Link>
             </div>
           </CardContent>
         </Card>

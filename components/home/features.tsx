@@ -1,74 +1,85 @@
-import { CalendarPlus, Users, Ticket, Bell, MapPin, Clock } from "lucide-react";
+import {
+  Bell,
+  CalendarPlus,
+  ClipboardCheck,
+  HeartHandshake,
+  MapPin,
+  Users,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
     icon: CalendarPlus,
-    title: "Create & Manage Events",
+    title: "Create a community event",
     description:
-      "Easily create social events, set details, and manage attendees all in one place.",
-  },
-  {
-    icon: Ticket,
-    title: "Easy Registration",
-    description:
-      "Let people RSVP to your events with simple sign-up and instant confirmation.",
-  },
-  {
-    icon: Users,
-    title: "Connect With Others",
-    description:
-      "Bring people together and build connections through shared experiences.",
+      "Set a purpose, choose a neighborhood, and bring your service idea to life.",
   },
   {
     icon: MapPin,
-    title: "Find Local Events",
+    title: "Find help close to home",
     description:
-      "Discover social events happening near you and never miss out on fun activities.",
+      "Discover local drives, from winter clothes distribution in Mirpur to food support in Dhanmondi.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Join a cause that matters",
+    description:
+      "Meet neighbors who care about the same things and make time together count.",
+  },
+  {
+    icon: Users,
+    title: "Bring volunteers together",
+    description:
+      "Share event details and help more people take part in meaningful local work.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Keep every event organized",
+    description:
+      "Keep track of the events you create and the ones you plan to attend.",
   },
   {
     icon: Bell,
-    title: "Event Reminders",
+    title: "Stay in the loop",
     description:
-      "Get timely reminders so attendees stay updated about upcoming events.",
-  },
-  {
-    icon: Clock,
-    title: "Stay Organized",
-    description:
-      "Track upcoming, ongoing, and past events with a clean, simple dashboard.",
+      "Keep important event information handy as plans and participation take shape.",
   },
 ];
 
 export function Features() {
   return (
-    <section className="py-20 md:py-28">
-
+    <section className="py-20 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-2xl text-center mb-12">
-          <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-            Everything for Social Events
+        <div className="mb-10 max-w-2xl md:mb-12">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+            From idea to impact
+          </p>
+          <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            Make it easier to show up for your community
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Simple tools to plan, share, and enjoy social events together
+          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
+            Everything you need to find, join, and organize social service
+            events in your neighborhood.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => {
             const Icon = feature.icon;
+
             return (
-              <Card key={feature.title} className="border-border/50">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
+              <Card key={feature.title} className="h-full border-border/70 shadow-sm">
+                <CardHeader className="gap-4">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon aria-hidden="true" className="size-5" />
                   </div>
+                  <CardTitle className="text-lg font-semibold">
+                    {feature.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm leading-6 text-muted-foreground">
                     {feature.description}
                   </p>
                 </CardContent>
