@@ -3,6 +3,7 @@ import { Google_Sans, Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
+import { Footer } from "@/components/footer/footer";
 import { Toaster } from "@/components/ui/sonner";
 
 const lora = Lora({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           <Navbar />
           {children}
+          <Footer />
           <Toaster
             position="top-right"
             theme="system"
