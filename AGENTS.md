@@ -8,16 +8,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-## follow ui best preactices
-
-don't use arbitary colors, go for semantic colors.
-colors should be consistent accross the ui, don't use too many colors or specially gradients.
-
-use shadcn ui components
-
 ## Product Context
 
 This repository is a community-driven event management platform. Users can create, join, and track social service events in their local area. Keep UI copy and examples focused on local community participation and service, such as:
 
 - Winter Clothes Distribution — Mirpur 10, Dhaka
 - Blanket Distribution for the Needy — Mohammadpur, Dhaka
+
+## Project Documentation
+
+- Read [docs/architecture.md](docs/architecture.md) for the application structure, rendering, and authentication flow.
+- Follow [docs/style-conventions.md](docs/style-conventions.md) for typography, semantic colors, layout, accessibility, and component patterns.
