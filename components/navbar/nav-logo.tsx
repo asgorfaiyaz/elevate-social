@@ -60,10 +60,20 @@ export function NavLogo() {
   return (
     <Link
       href="/"
-      className="flex items-center gap-2 font-heading text-lg font-semibold tracking-tight"
+      aria-label="Elevate Social home"
+      className="group flex items-center gap-2.5 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      <LogoMark className="size-7" />
-      <span>SocialEvent</span>
+      <span className="flex size-9 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/10 transition-transform duration-200 group-hover:-rotate-3">
+        <LogoMark className="size-6" />
+      </span>
+      <span className="flex items-baseline gap-1.5">
+        <span className="font-heading text-[1.35rem] font-semibold tracking-[-0.055em] text-foreground">
+          Elevate
+        </span>
+        <span className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-primary">
+          Social
+        </span>
+      </span>
     </Link>
   );
 }

@@ -6,12 +6,15 @@ import { NavLinks } from "./nav-links";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 dark:bg-slate-950 backdrop-blur-md">
-      <nav className="relative container mx-auto flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
+      <nav
+        aria-label="Main navigation"
+        className="relative container mx-auto flex h-16 items-center justify-between px-4"
+      >
         <NavLogo />
         <NavLinks />
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <ThemeToggle />
           <AuthButton className="hidden md:inline-flex" />
           <MobileMenu />
