@@ -6,17 +6,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { CommunityEvent } from "@/lib/events";
 
-function formatEventDate(value: string) {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) return value;
-
-  return new Intl.DateTimeFormat("en-BD", {
-    dateStyle: "medium",
-    timeStyle: value.includes("T") ? "short" : undefined,
-  }).format(date);
-}
-
 export function EventCard({ event }: { event: CommunityEvent }) {
   return (
     <Card className="group h-full border-border/70 p-0 transition-shadow hover:shadow-lg hover:shadow-foreground/5">
@@ -37,7 +26,7 @@ export function EventCard({ event }: { event: CommunityEvent }) {
         <p className="mb-2 flex min-h-5 items-center gap-2 text-sm font-medium text-primary">
           <CalendarDays aria-hidden="true" className="size-4 shrink-0" />
           <time className="line-clamp-1" dateTime={event.eventDate}>
-            {formatEventDate(event.eventDate)}
+            {event.eventDate}
           </time>
         </p>
         <h2 className="line-clamp-2 min-h-14 font-heading text-xl font-semibold leading-snug tracking-tight">

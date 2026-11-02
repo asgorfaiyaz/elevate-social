@@ -7,16 +7,18 @@ export type CommunityEvent = EventFormValues & {
 };
 
 const events_url = `${process.env.SERVER_URI}/events`;
-export async function getEvents(): Promise<CommunityEvent[]> {
-  "use cache";
-  cacheTag("events");
-  cacheLife("hours");
+export async function getEvents(
+  eventType?: string,
+  title?: string,
+): Promise<CommunityEvent[]> {
+  const url = new URL(events_url);
+  if (eventType) url.searchParams.set("eventType", eventType);
+  if (title) url.searchParams.set("title", title);
 
-  const response = await fetch(events_url);
+  const response = await fetch(url, { cache: "no-store" });
   if (!response.ok) throw new Error("Could not load events");
 
   const result = await response.json();
-  console.log(result);
   return Array.isArray(result.data?.events) ? result.data.events : [];
 }
 
