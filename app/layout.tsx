@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import { Fraunces, Google_Sans } from "next/font/google";
+import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer/footer";
 import { Toaster } from "@/components/ui/sonner";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-});
 const googleSans = Google_Sans({
   variable: "--font-google-sans",
   subsets: ["latin"],
@@ -24,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${googleSans.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${googleSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
