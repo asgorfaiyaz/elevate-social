@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { LogOut, User } from "lucide-react";
+import Link from "next/link";
+import { CalendarPlus, LogOut, User } from "lucide-react";
 import { toast } from "sonner";
 
 import { authClient } from "@/lib/auth-client";
@@ -10,7 +11,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -25,6 +25,11 @@ function getInitials(name?: string | null) {
     .map((n) => n[0].toUpperCase())
     .join("");
 }
+
+const links = [
+  { label: "Profile", href: "/my-profile", icon: User },
+  { label: "Create event", href: "/events/create", icon: CalendarPlus },
+];
 
 export function UserMenu() {
   const router = useRouter();
@@ -64,7 +69,10 @@ export function UserMenu() {
         aria-label="Open user menu"
       >
         <Avatar size="default">
-          <AvatarImage src={user.image ?? undefined} alt={user.name ?? "User"} />
+          <AvatarImage
+            src={user.image ?? undefined}
+            alt={user.name ?? "User"}
+          />
           <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -82,12 +90,12 @@ export function UserMenu() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User />
-            Profile
+        {links.map(({ label, href, icon: Icon }) => (
+          <DropdownMenuItem key={href} render={<Link href={href} />}>
+            <Icon />
+            {label}
           </DropdownMenuItem>
-        </DropdownMenuGroup>
+        ))}
 
         <DropdownMenuSeparator />
 
