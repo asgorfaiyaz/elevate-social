@@ -19,8 +19,12 @@ async function UpcomingEventsContent({
   searchParams,
 }: UpcomingEventsPageProps) {
   const { title, eventType } = await searchParams;
-  const selectedTitle = title as string;
-  const selectedType = eventType as string;
+  const selectedTitle = typeof title === "string" ? title.trim() : "";
+  const selectedType =
+    typeof eventType === "string" &&
+    EVENT_TYPES.includes(eventType as (typeof EVENT_TYPES)[number])
+      ? eventType
+      : "";
 
   const events: CommunityEvent[] = await getEvents(
     selectedType || undefined,
