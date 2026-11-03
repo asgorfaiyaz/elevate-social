@@ -97,7 +97,7 @@ export function EventForm({
 
     try {
       const response = await fetch(url, {
-        method: isUpdating ? "PUT" : "POST",
+        method: isUpdating ? "PATCH" : "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

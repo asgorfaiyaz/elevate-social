@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { EventForm } from "@/components/events/event-form";
 import { auth } from "@/lib/auth";
 import type { EventFormValues } from "@/lib/validations/event";
+import { getEventById } from "@/lib/events";
 
 export const instant = false;
 
@@ -12,20 +13,6 @@ export const metadata: Metadata = {
   title: "Update an Event — Elevate Social",
   description: "Update the details of your community service event.",
 };
-
-type EventRecord = EventFormValues & { createdByEmail: string };
-
-async function getEventById(eventId: string): Promise<EventRecord | null> {
-  const response = await fetch(
-    `${process.env.SERVER_URI}/events/${encodeURIComponent(eventId)}`,
-    { cache: "no-store" },
-  );
-
-  if (response.status === 404) return null;
-  if (!response.ok) throw new Error("Could not load event");
-
-  return response.json();
-}
 
 export default async function UpdateEventPage({
   params,
@@ -39,7 +26,6 @@ export default async function UpdateEventPage({
 
   const event = await getEventById(eventId);
   if (!event) notFound();
-
   if (event.createdByEmail !== session.user.email) redirect("/upcoming-events");
 
   const initialValues: EventFormValues = {

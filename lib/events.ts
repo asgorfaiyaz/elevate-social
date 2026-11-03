@@ -38,6 +38,20 @@ export async function getJoinedEvents(
   return result.data?.events || [];
 }
 
+export async function getMyEvents(token: string): Promise<CommunityEvent[]> {
+  const response = await fetch(`${process.env.SERVER_URI}/events/my`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+  if (!response.ok) throw new Error("Could not load your events");
+
+  const result = await response.json();
+  return Array.isArray(result.data?.events) ? result.data.events : [];
+}
+
 export async function getEventById(
   eventId: string,
 ): Promise<CommunityEvent | null> {

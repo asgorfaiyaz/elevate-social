@@ -2,7 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CalendarPlus, ListChecks, LogOut, User } from "lucide-react";
+import {
+  CalendarDays,
+  CalendarPlus,
+  ListChecks,
+  LogOut,
+  User,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import { authClient } from "@/lib/auth-client";
@@ -29,6 +35,7 @@ function getInitials(name?: string | null) {
 const links = [
   { label: "Profile", href: "/my-profile", icon: User },
   { label: "Joined events", href: "/joined-events", icon: ListChecks },
+  { label: "Manage events", href: "/manage-events", icon: CalendarDays },
   { label: "Create event", href: "/events/create", icon: CalendarPlus },
 ];
 
