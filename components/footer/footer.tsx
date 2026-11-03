@@ -1,5 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, HeartHandshake, MapPin } from "lucide-react";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
 
 const footerLinkClass =
@@ -26,6 +33,53 @@ export function Footer() {
               <MapPin aria-hidden="true" className="size-4 text-primary" />
               Built for neighbors across Dhaka
             </p>
+            <div className="flex items-center gap-2 pt-2" aria-label="Social links">
+              <a
+                href="https://www.facebook.com/asgorfaiyaz"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FaFacebookF aria-hidden="true" className="size-4" />
+              </a>
+              <a
+                href="https://x.com/asgorfaiyaz"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X"
+                className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FaXTwitter aria-hidden="true" className="size-4" />
+              </a>
+              <a
+                href="https://www.youtube.com/@asgorfaiyaz"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FaYoutube aria-hidden="true" className="size-4" />
+              </a>
+              <a
+                href="https://github.com/asgorfaiyaz"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FaGithub aria-hidden="true" className="size-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/asgorfaiyaz"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FaLinkedinIn aria-hidden="true" className="size-4" />
+              </a>
+            </div>
           </div>
 
           <nav aria-label="Explore">
