@@ -59,9 +59,16 @@ export default async function EventDetailsPage({
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <JoinEventButton
+              key={event._id}
+              eventId={event._id}
               apiEndpoint={
                 process.env.SERVER_URI
-                  ? `${process.env.SERVER_URI}/events/${event._id}/join`
+                  ? `${process.env.SERVER_URI}/events/${encodeURIComponent(event._id)}/join`
+                  : undefined
+              }
+              statusEndpoint={
+                process.env.SERVER_URI
+                  ? `${process.env.SERVER_URI}/events/${encodeURIComponent(event._id)}/join-status`
                   : undefined
               }
             />
