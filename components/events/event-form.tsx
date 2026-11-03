@@ -83,9 +83,7 @@ export function EventForm({
       createdByEmail: userEmail,
     };
     const action = isUpdating ? "updated" : "created";
-    const url = isUpdating
-      ? `${apiEndpoint}/${eventId}`
-      : apiEndpoint;
+    const url = isUpdating ? `${apiEndpoint}/${eventId}` : apiEndpoint;
 
     try {
       const response = await fetch(url, {
@@ -96,7 +94,15 @@ export function EventForm({
         },
         body: JSON.stringify(event),
       });
-      if (!response.ok) throw new Error("Request failed");
+      if (!response.ok) {
+        const { message } = await response.json();
+
+        toast.error(`Event could not be ${action}`, {
+          description:
+            message || `Request failed (${response.status}). Please try again.`,
+        });
+        return;
+      }
 
       toast.success(`Event ${action} successfully`);
       router.push("/upcoming-events");
