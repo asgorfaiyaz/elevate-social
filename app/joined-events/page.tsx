@@ -15,8 +15,20 @@ async function JoinedEventsList() {
 
   const { token } = await auth.api.getToken({ headers: requestHeaders });
   const events: CommunityEvent[] = await getJoinedEvents(token);
+  const sortedEvents = [...events].sort((first, second) => {
+    const firstDate = Date.parse(first.eventDate); // miliseconds from 1970
+    const secondDate = Date.parse(second.eventDate);
 
-  if (events.length === 0) {
+    // The Fallback Safety Guard (Number.isNaN)
+    // if firstDate or secondDate results into NaN, in that case localeCompare is going to hanle this case as fallback
+    if (Number.isNaN(firstDate) || Number.isNaN(secondDate)) {
+      return first.eventDate.localeCompare(second.eventDate);
+    }
+
+    return firstDate - secondDate;
+  });
+
+  if (sortedEvents.length === 0) {
     return (
       <p className="rounded-xl border border-border bg-card px-5 py-8 text-center text-muted-foreground">
         You haven&apos;t joined an event yet. Browse local events and find a way
@@ -27,7 +39,7 @@ async function JoinedEventsList() {
 
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {events.map((event) => (
+      {sortedEvents.map((event) => (
         <EventCard key={event._id} event={event} />
       ))}
     </div>
