@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { JoinEventButton } from "@/components/events/join-event-button";
 import { getEventById } from "@/lib/events";
 
 export const instant = false;
@@ -56,15 +57,24 @@ export default async function EventDetailsPage({
           <p className="mt-7 whitespace-pre-line leading-7 text-foreground/85">
             {event.description}
           </p>
-          <Link
-            href="/upcoming-events"
-            className={buttonVariants({
-              variant: "outline",
-              className: "mt-8",
-            })}
-          >
-            Browse more events
-          </Link>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <JoinEventButton
+              apiEndpoint={
+                process.env.SERVER_URI
+                  ? `${process.env.SERVER_URI}/events/${event._id}/join`
+                  : undefined
+              }
+            />
+            <Link
+              href="/upcoming-events"
+              className={buttonVariants({
+                variant: "outline",
+                className: "h-10 w-full sm:w-auto",
+              })}
+            >
+              Browse more events
+            </Link>
+          </div>
         </div>
       </article>
     </main>
