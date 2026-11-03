@@ -2,7 +2,7 @@
 
 Elevate Social is a community event platform that helps people organize and join local service activities.
 
-**Live site:** [Visit Elevate Social](YOUR_LIVE_SITE_URL)
+**Live site:** [Visit Elevate Social](https://elevate-social-asgorfaiyaz.vercel.app/)
 
 ## Features
 
