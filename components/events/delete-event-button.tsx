@@ -10,9 +10,11 @@ import { authClient } from "@/lib/auth-client";
 export function DeleteEventButton({
   apiEndpoint,
   eventTitle,
+  className,
 }: {
   apiEndpoint?: string;
   eventTitle: string;
+  className?: string;
 }) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
@@ -73,6 +75,7 @@ export function DeleteEventButton({
     <Button
       type="button"
       variant="destructive"
+      className={className}
       disabled={isDeleting}
       onClick={deleteEvent}
     >

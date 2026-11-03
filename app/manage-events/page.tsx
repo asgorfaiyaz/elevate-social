@@ -4,8 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { CalendarPlus } from "lucide-react";
 
-import { DeleteEventButton } from "@/components/events/delete-event-button";
-import { EventCard } from "@/components/events/event-card";
+import { ManageEventCard } from "@/components/events/manage-event-card";
 import { buttonVariants } from "@/components/ui/button";
 import { getMyEvents } from "@/lib/events";
 import { auth } from "@/lib/auth";
@@ -30,28 +29,7 @@ async function ManagedEventsList() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {userEvents.map((event) => (
-        <div key={event._id} className="flex flex-col gap-3">
-          <EventCard event={event} />
-          <div className="flex gap-3">
-            <Link
-              href={`/events/${event._id}/edit`}
-              className={buttonVariants({
-                variant: "outline",
-                className: "h-10 flex-1",
-              })}
-            >
-              Edit event
-            </Link>
-            <DeleteEventButton
-              eventTitle={event.title}
-              apiEndpoint={
-                process.env.SERVER_URI
-                  ? `${process.env.SERVER_URI}/events/${event._id}`
-                  : undefined
-              }
-            />
-          </div>
-        </div>
+        <ManageEventCard key={event._id} event={event} />
       ))}
     </div>
   );
