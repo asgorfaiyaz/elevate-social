@@ -7,10 +7,12 @@ const authRoutes = ["/sign-in", "/sign-up"];
 
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  const isPublicEventDetails = /^\/events\/(?!create\/?$)[^/]+\/?$/.test(path);
 
   if (
     publicRoutes.includes(path) ||
-    path.startsWith("/upcoming-events/")
+    path.startsWith("/upcoming-events/") ||
+    isPublicEventDetails
   ) {
     return NextResponse.next();
   }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { headers } from "next/headers";
 import { Plus } from "lucide-react";
 
 import { EventCard } from "@/components/events/event-card";
@@ -7,6 +8,24 @@ import { EventFilters } from "@/components/events/event-filters";
 import { buttonVariants } from "@/components/ui/button";
 import { getEvents, type CommunityEvent } from "@/lib/events";
 import { EVENT_TYPES } from "@/lib/validations/event";
+import { auth } from "@/lib/auth";
+
+async function CreateEventAction() {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session?.user) return null;
+
+  return (
+    <Link
+      href="/events/create"
+      className={buttonVariants({
+        className: "h-10 gap-2 self-start sm:self-auto",
+      })}
+    >
+      <Plus aria-hidden="true" />
+      Create event
+    </Link>
+  );
+}
 
 type UpcomingEventsPageProps = {
   searchParams: Promise<{
@@ -85,15 +104,9 @@ export default function UpcomingEventsPage({
               community.
             </p>
           </div>
-          <Link
-            href="/events/create"
-            className={buttonVariants({
-              className: "h-10 gap-2 self-start sm:self-auto",
-            })}
-          >
-            <Plus aria-hidden="true" />
-            Create event
-          </Link>
+          <Suspense fallback={null}>
+            <CreateEventAction />
+          </Suspense>
         </header>
 
         <Suspense fallback={<EventsFallback />}>
