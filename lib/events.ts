@@ -1,5 +1,6 @@
 import type { EventFormValues } from "@/lib/validations/event";
 import { cacheLife, cacheTag } from "next/cache";
+import { connection } from "next/server";
 
 export type CommunityEvent = EventFormValues & {
   _id: string;
@@ -23,6 +24,9 @@ export async function getEvents(
 }
 
 export async function getRecentUpcomingEvents(): Promise<CommunityEvent[]> {
+  // In Next.js, connection() is a built-in utility used to explicitly force dynamic rendering.
+  // It tells Next.js to wait for an incoming user request before rendering the component
+  await connection();
   const events = await getEvents();
   const todayUtc = new Date().toISOString().slice(0, 10);
 
