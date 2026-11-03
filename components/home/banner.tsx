@@ -1,23 +1,23 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, HeartHandshake, MapPin } from "lucide-react";
+import { ArrowRight, HeartHandshake } from "lucide-react";
+
+import { BannerVideo } from "@/components/home/banner-video";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Banner() {
   return (
-    <section className="border-b border-border/60 bg-background py-14 sm:py-16 lg:py-24">
-      <div className="container mx-auto grid items-center gap-10 px-4 lg:grid-cols-2 lg:gap-14">
-        <div className="flex flex-col items-start">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3.5 py-2 text-sm font-medium text-foreground">
-            <MapPin aria-hidden="true" className="size-4 text-primary" />
-            Local events. Real community impact.
-          </div>
+    <section className="relative isolate min-h-155 overflow-hidden border-b border-border/60 bg-slate-950">
+      <BannerVideo />
+      <div className="absolute inset-0 -z-10 bg-[url('/images/banner-01.jpg')] bg-cover bg-center" />
+      <div className="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/80 to-slate-950/20" />
 
-          <h1 className="max-w-2xl font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl lg:leading-[1.08]">
+      <div className="container relative mx-auto flex min-h-155 items-center px-4 py-16 sm:px-6 lg:px-8">
+        <div className="max-w-2xl rounded-2xl border border-white/15 bg-slate-950/25 p-6 text-white shadow-2xl backdrop-blur-sm sm:p-9">
+          <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.08]">
             Bring your neighborhood together for good.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+          <p className="mt-6 max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
             Find a cause close to home, join a volunteer drive, or organize an
             event of your own. Small acts of care can make a lasting difference
             across Dhaka.
@@ -35,44 +35,18 @@ export function Banner() {
               href="/sign-up"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "gap-2",
+                "gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white",
               )}
             >
-              <HeartHandshake aria-hidden="true" className="size-4 text-primary" />
+              <HeartHandshake aria-hidden="true" className="size-4" />
               Start an event
             </Link>
           </div>
 
-          <p className="mt-5 text-sm text-muted-foreground">
-            From winter clothing drives to neighborhood cleanups, there’s a way
-            to help nearby.
+          <p className="mt-5 text-sm text-white/70">
+            From winter clothing drives to neighborhood cleanups, there&apos;s a
+            way to help nearby.
           </p>
-        </div>
-
-        <div className="relative min-h-[380px] overflow-hidden rounded-2xl border border-border bg-muted shadow-lg sm:min-h-[480px]">
-          <Image
-            src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1400&h=1200&fit=crop"
-            alt="Community volunteers working together at a local service event"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-            <div className="rounded-xl border border-white/20 bg-black/35 p-4 text-white shadow-sm backdrop-blur-md sm:p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/75">
-                Make a difference close to home
-              </p>
-              <p className="mt-2 font-heading text-xl font-semibold sm:text-2xl">
-                Winter Clothes Distribution
-              </p>
-              <p className="mt-2 flex items-center gap-1.5 text-sm text-white/85">
-                <MapPin aria-hidden="true" className="size-4" />
-                Mirpur 10, Dhaka
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
