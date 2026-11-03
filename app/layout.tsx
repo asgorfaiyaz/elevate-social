@@ -12,8 +12,9 @@ const googleSans = Google_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Social Event",
-  description: "Social Event Management",
+  title: "Elevate Social | Community Events",
+  description:
+    "Discover, join, and organize local community events that bring people together to make a difference.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
