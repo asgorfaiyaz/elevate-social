@@ -22,6 +22,22 @@ export async function getEvents(
   return Array.isArray(result.data?.events) ? result.data.events : [];
 }
 
+export async function getRecentUpcomingEvents(): Promise<CommunityEvent[]> {
+  const events = await getEvents();
+  const todayUtc = new Date().toISOString().slice(0, 10);
+
+  return events
+    .filter((event) => {
+      const timestamp = Date.parse(event.eventDate);
+      return (
+        !Number.isNaN(timestamp) &&
+        new Date(timestamp).toISOString().slice(0, 10) >= todayUtc
+      );
+    })
+    .sort((first, second) => first.eventDate.localeCompare(second.eventDate))
+    .slice(0, 6);
+}
+
 export async function getJoinedEvents(
   token: string,
 ): Promise<CommunityEvent[]> {
