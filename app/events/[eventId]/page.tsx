@@ -4,6 +4,7 @@ import { ArrowLeft, CalendarDays, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { JoinEventButton } from "@/components/events/join-event-button";
 import { getEventById } from "@/lib/events";
+import { formatDate } from "@/lib/utils";
 
 export const instant = false;
 
@@ -51,7 +52,9 @@ export default async function EventDetailsPage({
                 aria-hidden="true"
                 className="size-4 text-primary"
               />
-              {event.eventDate}
+              <time dateTime={event.eventDate}>
+                {formatDate(event.eventDate)}
+              </time>
             </p>
           </div>
           <p className="mt-7 whitespace-pre-line leading-7 text-foreground/85">

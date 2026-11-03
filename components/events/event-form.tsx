@@ -81,6 +81,7 @@ export function EventForm({
 
     const event = {
       ...values,
+      eventDate: new Date(values.eventDate),
       createdByEmail: userEmail,
     };
     const action = isUpdating ? "updated" : "created";

@@ -50,6 +50,12 @@ async function UpcomingEventsContent({
     selectedTitle || undefined,
   );
 
+  // Get today's date prefix (e.g., "2026-11-03")
+  const todayUtc = new Date().toISOString().slice(0, 10);
+  const upcomingEvents = events.filter((event) => {
+    return event.eventDate?.slice(0, 10) >= todayUtc;
+  });
+
   return (
     <>
       <EventFilters
@@ -58,14 +64,14 @@ async function UpcomingEventsContent({
         initialTitle={selectedTitle}
       />
 
-      {events.length === 0 ? (
+      {upcomingEvents.length === 0 ? (
         <p className="rounded-xl border border-border bg-card px-5 py-8 text-center text-muted-foreground">
           There are no upcoming events yet. Create one and bring your community
           together.
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((event) => (
+          {upcomingEvents.map((event) => (
             <EventCard key={event._id} event={event} />
           ))}
         </div>

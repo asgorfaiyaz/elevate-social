@@ -5,6 +5,7 @@ import { DeleteEventButton } from "@/components/events/delete-event-button";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { CommunityEvent } from "@/lib/events";
+import { formatDate } from "@/lib/utils";
 
 export function ManageEventCard({ event }: { event: CommunityEvent }) {
   return (
@@ -26,7 +27,7 @@ export function ManageEventCard({ event }: { event: CommunityEvent }) {
         <p className="mb-2 flex min-h-5 items-center gap-2 text-sm font-medium text-primary">
           <CalendarDays aria-hidden="true" className="size-4 shrink-0" />
           <time className="line-clamp-1" dateTime={event.eventDate}>
-            {event.eventDate}
+            {formatDate(event.eventDate)}
           </time>
         </p>
         <h2 className="line-clamp-2 min-h-14 font-heading text-xl font-semibold leading-snug tracking-tight">
