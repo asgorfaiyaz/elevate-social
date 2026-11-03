@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 
 export const navLinks = [
   { label: "Home", href: "/" },
@@ -12,10 +13,14 @@ export const navLinks = [
 
 export function NavLinks() {
   const pathname = usePathname();
+  const { data: session, isPending } = authClient.useSession();
+  const visibleLinks = navLinks.filter(
+    (link) => link.label !== "Host a Drive" || (!isPending && !session?.user),
+  );
 
   return (
     <ul className="hidden items-center gap-1 rounded-full border border-border/60 bg-muted/40 p-1 text-sm md:flex">
-      {navLinks.map((link) => {
+      {visibleLinks.map((link) => {
         const isActive =
           pathname === link.href || pathname.startsWith(`${link.href}/`);
 

@@ -6,12 +6,17 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 import { AuthButton } from "./auth-button";
 import { navLinks } from "./nav-links";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session, isPending } = authClient.useSession();
+  const visibleLinks = navLinks.filter(
+    (link) => link.label !== "Host a Drive" || (!isPending && !session?.user),
+  );
 
   return (
     <>
@@ -34,7 +39,7 @@ export function MobileMenu() {
             "flex flex-col gap-1 px-4 py-4 md:hidden",
           )}
         >
-          {navLinks.map((link) => {
+          {visibleLinks.map((link) => {
             const isActive =
               link.href === "/"
                 ? pathname === "/"
