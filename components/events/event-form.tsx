@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { authClient } from "@/lib/auth-client";
 
 type EventFormProps = {
   userEmail: string;
@@ -84,6 +85,15 @@ export function EventForm({
     };
     const action = isUpdating ? "updated" : "created";
     const url = isUpdating ? `${apiEndpoint}/${eventId}` : apiEndpoint;
+    const { data, error } = await authClient.token();
+    if (error || !data?.token) {
+      toast.error("Sign in to join this event", {
+        description: "Your account is required to join a community event.",
+      });
+      return;
+    }
+
+    const token = data.token;
 
     try {
       const response = await fetch(url, {
@@ -91,6 +101,7 @@ export function EventForm({
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(event),
       });
@@ -108,7 +119,7 @@ export function EventForm({
       router.push("/upcoming-events");
     } catch {
       toast.error(`Event could not be ${action}`, {
-        description: "Please check your connection and try again.",
+        description: "Something went wrong.",
       });
     }
   }
